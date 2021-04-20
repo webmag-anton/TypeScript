@@ -1,40 +1,37 @@
-// guards - вспомагательные конструкции, которые помогают работать с типами
+
+      // guards - вспомагательные конструкции для работы с типами
+
+// их суть сводится к проверке передаваемого аргумента
 
 function strip(x: string | number) {
-   if (typeof x === 'number') {
-      return x.toFixed(2)
-   }
-   return x.trim()
+  if (typeof x === 'number') {
+    return x.toFixed(2)
+  }
+  return x.trim()
 } 
 
 
 class MyResponse {
-   header = 'response header'
-   result = 'response result'
+  header = 'response header'
+  result = 'response result'
 }
 
 class MyError {
-   header = 'error header'
-   message = 'error message'
+  header = 'error header'
+  message = 'error message'
 }
 
 function handle(res: MyResponse | MyError) {
-   if (res instanceof MyResponse) {
-      return {
-         info: res.header + res.result
-      }
-   } else {
-      return {
-         info: res.header + res.message
-      }
-   }
+  if (res instanceof MyResponse) {
+    return {info: res.header + res.result}
+  } 
+  return {info: res.header + res.message}
 }
 
 
 // =============
 
 type AlertType = 'success' | 'danger' | 'warning'
-
 function setAlertType(type: AlertType) {
    // ....
 }

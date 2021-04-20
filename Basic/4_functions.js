@@ -4,9 +4,11 @@ function add(a, b) {
 function toUpperCase(str) {
     return str.trim().toLocaleUpperCase();
 }
+// Определяем саму ф-ию position (a и b не обязатеьны, т.к. может быть вызов без аргументов):
 function position(a, b) {
-    // если не передавали параметров a и b, то нужно вернуть MyPosition
+    // если не передавали аргументы a и b, то нужно вернуть объект от интерфейса MyPosition
     if (!a && !b) {
+        // в данном случае undefined это не тип, а переменная, т.к. внутри объекта
         return { x: undefined, y: undefined };
     }
     // если передали только a
@@ -16,6 +18,6 @@ function position(a, b) {
     // а иначе
     return { x: a, y: b };
 }
-console.log('Empty', position());
-console.log('One param', position(42));
-console.log('Two params', position(10, 15));
+console.log('Empty', position()); // Empty { x: undefined, y: undefined }
+console.log('One param', position(42)); // One param { x: 42, y: undefined, default: '42' }
+console.log('Two params', position(10, 15)); // Two params { x: 10, y: 15 }

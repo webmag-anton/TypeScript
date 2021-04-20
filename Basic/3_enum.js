@@ -1,5 +1,5 @@
-//    enum - вспомагательная сущность, которая помагает лучше 
-// структурировать код, если присутствуют однотипные элементы
+//    enum (перечислить) - вспомагательная сущность, которая помагает 
+// лучше структурировать код, если присутствуют однотипные элементы
 // создаем элементы enum'а
 var Membership;
 (function (Membership) {
@@ -8,7 +8,7 @@ var Membership;
     Membership[Membership["Premium"] = 2] = "Premium";
 })(Membership || (Membership = {}));
 var membership = Membership.Standart;
-console.log(membership); // 1
+console.log(membership); // 1, т.к. первый элемент от начала
 // так же можно получить строковое значение элемента enum'а, обратившись по индексу
 var membershipReverse = Membership[2];
 console.log(membershipReverse); // Premium

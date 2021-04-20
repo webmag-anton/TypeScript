@@ -1,12 +1,14 @@
-//    Классы в TS создаются так же, как и в ES6, но есть определенные нюансы
+// классы в TS создаются так же, как и в ES6, но есть определенные нюансы:
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -21,18 +23,21 @@ var Typescript = /** @class */ (function () {
     };
     return Typescript;
 }());
+// модификатор readonly; значение по умолчанию:
 var Car = /** @class */ (function () {
     function Car(theModel) {
         this.numberOfWheels = 4; // тип number, по умолчанию равно 4
-        this.model = theModel; // можем перезаписать только внутри конструктора, в других методах нельзя
+        this.model = theModel; // можем перезаписать только внутри конструктора, в других методах нельзя!
     }
     return Car;
 }());
-// ========  Модификаторы (protected, public, private)
+// модификаторы protected, public, private:
+// по умолчанию поля без модификаторов - public
 var Animal = /** @class */ (function () {
     function Animal() {
         this.voice = ''; // поля с protected доступны в классе Animal и для всех наследуемых классов
         this.color = 'black'; // доступны для всех наследуемых классов и инстенсов
+        this.go(); // go доступен только в классе Animal
     }
     Animal.prototype.go = function () {
         console.log('go');
@@ -52,10 +57,11 @@ var Cat = /** @class */ (function (_super) {
 }(Animal));
 var cat = new Cat();
 // console.log(cat.voice)  // ошибка, нет доступа так так voice с модификатором protected
-// ======= Абстрактные классы - от них можно наследоваться, но они ни во что не компилируются, 
-//                              нужны на этапе разработки; так же есть абстрактные методы
+// абстрактные классы с помощью ключевого слова abstract:
+// от абстрактных классов можно наследоваться, но их суть в том они ни во что 
+// не компилируются, а нужны на этапе разработки; так же есть абстрактные методы
 // описываем какие то методы (абстрактные), которые должны быть 
-// реализованы у классов, которые будут наследоваться от этого компонента
+// реализованы у классов, которые будут наследоваться от этого класса
 var Component = /** @class */ (function () {
     function Component() {
     }
