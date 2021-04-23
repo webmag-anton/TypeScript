@@ -1,4 +1,6 @@
 
+const func = (a: number, b: number): number => a + b
+
 function add(a: number, b: number): number {
   return a + b
 }
@@ -9,7 +11,7 @@ function toUpperCase(str: string): string {
 
 
 
-      // Перегрузка для функции
+      // перегрузка (overload) функции:
 
 // Суть в том, что в зависимости от количества переданных 
 // параметров, функция может возвращать то или иное значение
@@ -31,7 +33,7 @@ function position(): MyPosition
 function position(a: number): MyPositionWithDefault
 function position(a: number, b: number): MyPosition
 
-// Определяем саму ф-ию position (a и b не обязатеьны, т.к. может быть вызов без аргументов):
+// Определяем саму ф-ию position (a и b не обязательны, т.к. может быть вызов без аргументов):
 function position(a?: number, b?: number) {
   // если не передавали аргументы a и b, то нужно вернуть объект от интерфейса MyPosition
   if (!a && !b) {

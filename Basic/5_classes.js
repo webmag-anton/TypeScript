@@ -18,6 +18,12 @@ var Typescript = /** @class */ (function () {
     function Typescript(version) {
         this.version = version;
     }
+    // вместо создания св-ва + присвоения ему значения в конструкторе ^, 
+    // можно было сделать это сразу в конструкторе; но в таком случае 
+    // нужно обязательно указывать модификатор: protected, public, private
+    // constructor(
+    //   public version: string
+    // ) {}
     Typescript.prototype.info = function (name) {
         return "[" + name + "]: Typescript version is " + this.version;
     };
@@ -58,20 +64,31 @@ var Cat = /** @class */ (function (_super) {
 var cat = new Cat();
 // console.log(cat.voice)  // ошибка, нет доступа так так voice с модификатором protected
 // абстрактные классы с помощью ключевого слова abstract:
-// от абстрактных классов можно наследоваться, но их суть в том они ни во что 
-// не компилируются, а нужны на этапе разработки; так же есть абстрактные методы
+// абстрактные классы помогает лучше представить как будут выглядеть его наследники; и по сути
+// он нужен только для создания классов-потомков; от абстрактного классов можно наследоваться 
+// другому классу, но от него не создать экземпляр; 
+// его суть в том, что он ни во что не компилируется, а нужен на этапе разработки; абстрактный
+// класс описывает св-ва и методы наследуемого от него класса; так же есть абстрактные методы
 // описываем какие то методы (абстрактные), которые должны быть 
 // реализованы у классов, которые будут наследоваться от этого класса
 var Component = /** @class */ (function () {
-    function Component() {
+    function Component(name, age) {
+        this.name = name;
+        this.age = age;
     }
+    Component.prototype.greet = function () {
+        console.log('not abstract');
+    };
     return Component;
 }());
-// необходимо реализовать абстрактные методы, которые унаследовали
+// необходимо реализовать абстрактные методы, которые унаследовали, иначе будет ошибка;
+// если метод не абстрактный (greet), то можем и не реализовывать его
 var AppComponent = /** @class */ (function (_super) {
     __extends(AppComponent, _super);
     function AppComponent() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = 'Eughen'; // св-во age можно и не делать, ошибки не будет
+        return _this;
     }
     AppComponent.prototype.render = function () {
         console.log('Component on Render');

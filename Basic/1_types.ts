@@ -6,7 +6,7 @@ const isFetching: boolean = true
 const isLoading: boolean = false
 
 let int: number = 42
-// int = ''                 // нельзя менять тип данных - выдаст ошибку
+// int = ''                 // нельзя менять тип данных - выдаст ошибку!
 const float: number = 4.2
 const num: number = 3e10
 
@@ -16,7 +16,7 @@ const num: number = 3e10
 
 const numberArray: number[] = [1, 1, 2, 3, 5, 8, 13]  // массив чисел
 // у массивов есть и другая форма указания типа; такая форма записи
-// называется generic тип (глобальный класс Array состоящия из number'ов):
+// называется generic тип (глобальный класс Array состоящий из number'ов):
 const numberArray2: Array<number> = [1, 1, 2, 3, 5, 8, 13]
 // массив строк
 const words: string[] = ['Hello', 'TypeScript']
@@ -25,7 +25,8 @@ const words: string[] = ['Hello', 'TypeScript']
 
       // типы tuple, any:
 
-// tuple (картэж) - тип данных для массива, состоящего из разных типов данных
+// tuple (картэж) - тип данных для массива, 
+// состоящего из разных указанных типов данных
 const contact: [string, number] = ['Anton', 123423] 
 
 // any - специальный тип, если можно переопределять тип
@@ -33,12 +34,14 @@ let variable: any = 42
 // ...
 variable = []
 
+const arrAny: any[] = ['Hello', 21]
+
 
 
       // функции; типы void, never в функциях:
 
 // указываем тип передаваемого аргумента в ф-ию и тип, который должна
-// вернуть ф-ия; Void используется, когда функция ничего не возвращает
+// вернуть ф-ия; void используется, когда функция ничего не возвращает
 function sayMyName(name: string): void {
   console.log(name)
 }
@@ -56,7 +59,7 @@ function infinite(): never {
 
 
 
-      // ключевое слово type; оператор | (или):
+      // ключевое слово type; оператор | (или); оператор & (и):
 
 // type - специальная конструкция (ключевое слово) для создания собственных типов
 // (например мы можем использовать примитивные типы и создавать для них allias)
@@ -69,9 +72,13 @@ const id2: ID = '1234'
 
 
 
-      // типы null, undefined, Date:
+      // типы null, undefined, Date, object, Function, Symbol:
 
 // примитивные типы null и undefined обычно используются в таком контексте
 type someType = string | null | undefined
 
+// бывают так же и такие типы:
 type dateType = Date
+type objectType = object
+type functionType = Function
+type symbolType = Symbol
